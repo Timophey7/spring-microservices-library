@@ -73,6 +73,9 @@ public class BookController {
     public ResponseEntity<BookResponse> getBookById(@PathVariable int id, HttpServletRequest request){
         try {
             Book book = bookService.getBookById(id);
+            if (book == null) {
+                throw new NullPointerException();
+            }
             BookResponse bookResponse = bookService.mapToBookResponse(book);
             return new ResponseEntity<BookResponse>(
                     bookResponse,

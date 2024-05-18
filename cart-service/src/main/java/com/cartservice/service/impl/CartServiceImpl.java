@@ -6,6 +6,7 @@ import com.cartservice.models.*;
 import com.cartservice.repository.CartItemRepository;
 import com.cartservice.repository.CartRepository;
 import com.cartservice.service.CartService;
+import com.cartservice.service.ProductService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -30,8 +31,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart getCartById(Long cartId)   {
-        Cart cart = cartRepository.findById(cartId).orElse(null);
-        return cart;
+        return cartRepository.findById(cartId).orElse(null);
     }
 
     @Override

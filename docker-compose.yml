@@ -77,7 +77,7 @@ services:
         environment:
             SPRING_PROFILES_ACTIVE: docker
         depends_on:
-            - db
+            - mysql-cart
             - discovery-service
             - api-gateway
 

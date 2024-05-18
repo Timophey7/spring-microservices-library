@@ -27,7 +27,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    @Cacheable(value = "redis", key = "#id")
+//    @Cacheable(value = "redis", key = "#id")
     public Book getBookById(int id) {
         Optional<Book> optionalBook = bookRepository.findById(id);
         Book book = optionalBook.orElse(null);
@@ -42,7 +42,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public String deleteBookById(int id) {
         if (getBookById(id) == null) {
-            throw new IllegalStateException();
+            throw new NullPointerException();
         }
         bookRepository.deleteById(id);
         return "Book successful deleted";

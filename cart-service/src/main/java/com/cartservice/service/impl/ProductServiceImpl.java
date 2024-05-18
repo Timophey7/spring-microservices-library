@@ -36,8 +36,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProduct(int id) throws ProductNotFoundException {
-        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("not found"));
-        return product;
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("not found"));
     }
 
     @Override
@@ -53,9 +52,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveProduct(int id) {
-        BookResponse productResponce = getBookResponse(id);
-        log.info("Saving product " + productResponce.getId());
-        Product product = mapToProduct(productResponce);
+        BookResponse productResponse = getBookResponse(id);
+        log.info("Saving product " + productResponse.getId());
+        Product product = mapToProduct(productResponse);
         log.info("map product " + product.getId());
         saveProduct(product);
         return product;

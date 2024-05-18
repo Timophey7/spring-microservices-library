@@ -131,10 +131,9 @@ public class CartController {
             );
         }
         Integer resultSum = cartService.getResultSum(cartId);
-        CartResponse cartResponse = CartResponse.builder()
-                .cartId(cart.getId()).
-                resultSum(resultSum)
-                .build();
+        CartResponse cartResponse = new CartResponse();
+        cartResponse.setCartId(cart.getId());
+        cartResponse.setResultSum(resultSum);
         try{
             String email = emailServiceImpl.getEmailFromToken(request);
             kafkaDataService.send(cartResponse);

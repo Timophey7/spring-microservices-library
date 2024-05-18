@@ -1,5 +1,6 @@
 package com.cartservice.models;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
