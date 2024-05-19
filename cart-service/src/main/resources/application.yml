@@ -1,6 +1,6 @@
 spring:
   liquibase:
-    change-log: classpath:liquibase/db.changelog-master.yaml
+    change-log: classpath:liquibase/db.changelog.yaml
     enabled: true
   mail:
     host: localhost
@@ -22,14 +22,12 @@ spring:
       host: localhost
       port: 6379
       password: ZmRlZWRhc3Nl
-  config:
-    import: optional:file:.env[.properties]
   kafka:
     bootstrap-servers: localhost:29092
   datasource:
-    url: jdbc:mysql://localhost:3310/cart-service?user=user&password=password
-    name: user
-    password: password
+    url: jdbc:mysql://localhost:3306/cart-service?user=${MYSQL_USERNAME}&password=${MYSQL_PASSWORD}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

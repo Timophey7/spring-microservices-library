@@ -2,11 +2,6 @@ spring:
   config:
     activate:
       on-profile: development
----
-spring:
-  config:
-    activate:
-      on-profile: development
   liquibase:
     enabled: true
     change-log: classpath:liquibase/db.changelog-master.yaml
@@ -23,55 +18,9 @@ spring:
   kafka:
     bootstrap-servers: 0.0.0.0:9092
   datasource:
-    url: jdbc:mysql://localhost:3307/library?user=user&password=password
-    username: user
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-    show-sql: true
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-logging:
-  level:
-    org:
-      springframework:
-        cache: DEBUG
-server:
-  port: 8084
-
----
-spring:
-  config:
-    activate:
-      on-profile: docker
-  liquibase:
-    enabled: true
-    change-log: classpath:liquibase/db.changelog-master.yaml
-  application:
-    name: electronic-library
-  cache:
-    type: redis
-    cache-names: redis
-  data:
-    redis:
-      host: localhost
-      port: 6379
-      password: ZmRlZWRhc3Nl
-  kafka:
-    bootstrap-servers: 0.0.0.0:9092
-  datasource:
-    url: jdbc:mysql://db:3307/library
-    username: user
-    password: password
+    url: jdbc:mysql://localhost:3306/library?user=${MYSQL_USERNAME}&password=${MYSQL_PASSWORD}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

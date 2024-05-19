@@ -6,81 +6,9 @@ networks:
 
 volumes:
     cache: {}
-    db-mysql:
-        driver: local
+    postgres-data:
 
 services:
-
-    mysql-cart:
-        image: mysql:8.0
-        networks:
-            - app
-        environment:
-            MYSQL_DATABASE: cart-service
-            MYSQL_USER: user
-            MYSQL_PASSWORD: password
-            MYSQL_ROOT_PASSWORD: password
-        ports:
-            - "3310:3310"
-        volumes:
-            - db-mysql:/var/lib/mysql
-
-    mysql-security:
-        image: mysql:8.0
-        networks:
-            - app
-        environment:
-            MYSQL_DATABASE: security-service
-            MYSQL_USER: user
-            MYSQL_PASSWORD: password
-            MYSQL_ROOT_PASSWORD: password
-        ports:
-            - "3309:3309"
-        volumes:
-            - db-mysql:/var/lib/mysql
-
-    mysql-orders:
-        image: mysql:8.0
-        networks:
-            - app
-        environment:
-            MYSQL_DATABASE: orders-service
-            MYSQL_USER: user
-            MYSQL_PASSWORD: password
-            MYSQL_ROOT_PASSWORD: password
-        ports:
-            - "3308:3308"
-        volumes:
-            - db-mysql:/var/lib/mysql
-
-    mysql-library:
-        image: mysql:8.0
-        networks:
-            - app
-        environment:
-            MYSQL_DATABASE: library
-            MYSQL_USER: user
-            MYSQL_PASSWORD: password
-            MYSQL_ROOT_PASSWORD: password
-        ports:
-            - "3307:3307"
-        volumes:
-            - db-mysql:/var/lib/mysql
-
-    library:
-        build:
-            context: ./library
-        networks:
-            - app
-        ports:
-            - "8084:8084"
-        environment:
-            SPRING_PROFILES_ACTIVE: docker
-        depends_on:
-            - db
-            - discovery-service
-            - api-gateway
-
 
 
     discovery-service:

@@ -7,9 +7,9 @@ spring:
   config:
     import: optional:file:.env[.properties]
   datasource:
-    url: jdbc:mysql://localhost:3309/security-service?user=user&password=password
-    name: user
-    password: password
+    url: jdbc:mysql://localhost:3309/security-service?user=${MYSQL_USERNAME}&password=${MYSQL_PASSWORD}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
